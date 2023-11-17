@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
         int[] prices = ArrayGenerator.generate(10);
-        Sort.insertion(prices);
+        Sort.selection(prices);
         p.n(Arrays.toString(prices));
     }    
 }
