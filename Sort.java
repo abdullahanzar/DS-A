@@ -25,9 +25,33 @@ public class Sort {
         }
     }
 
-    static void shel(int[] array) {
-        for(int gap= array.length/2; gap< array.length; gap++) {
-
+    static void shell(int[] array) {
+        for(int gap= array.length/2; gap>0; gap=gap/2) {
+            for(int i=gap; i<array.length; i++) {
+                int key = array[i];
+                int j;
+                for(j=i; j>=gap && array[j-gap]>key; j-=gap) {
+                    array[j] = array[j-gap];
+                }
+                array[j] = key;
+            }
         }
+    }
+
+    public static void merge(int[] array) {
+         mergeSort(array, 0, array.length);
+    }
+
+    static void mergeSort(int array[], int low, int high) {
+        if(low>=high)
+            return;
+        int mid = (low + high) / 2;
+        mergeSort(array, low, mid);
+        mergeSort(array, mid+1, high);
+        merge(array, low, mid, high);
+    }
+
+    private static void merge(int array[], int low, int mid, int high) {
+
     }
 }
