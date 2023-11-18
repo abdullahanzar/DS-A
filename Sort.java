@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Sort {
     static void insertion(int [] array) {
         for(int i=1; i<array.length; i++) {
@@ -39,10 +41,10 @@ public class Sort {
     }
 
     public static void merge(int[] array) {
-         mergeSort(array, 0, array.length);
+         mergeSort(array, 0, array.length-1);
     }
 
-    static void mergeSort(int array[], int low, int high) {
+    private static void mergeSort(int array[], int low, int high) {
         if(low>=high)
             return;
         int mid = (low + high) / 2;
@@ -52,6 +54,29 @@ public class Sort {
     }
 
     private static void merge(int array[], int low, int mid, int high) {
-
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        int left = low;
+        int right = mid+1;
+        while(left<=mid && right<=high) {
+            if(array[left]<array[right]) {
+                temp.add(array[left]);
+                left++;
+            }
+            else {
+                temp.add(array[right]);
+                right++;
+            }
+        }
+        while(left<=mid) {
+            temp.add(array[left]);
+            left++;
+        }
+        while(right<=high) {
+            temp.add(array[right]);
+            right++;
+        }
+        for(int i=low; i<=high; i++) {
+            array[i] = temp.get(i-low);
+        }
     }
 }
